@@ -4,49 +4,47 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
- 
 @Injectable({
   providedIn: 'root'
-  })
-   
-  export class AuthenticationService {
-  userData: Observable<firebase.User>;
-   
-  constructor(private angularFireAuth: AngularFireAuth) {
-  this.userData = angularFireAuth.authState;
+})
+export class AuthService {
+
+  loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLoggedInGuard: boolean = false;
+
+  constructor(private afAuth: AngularFireAuth, private toastr: ToastrService, private router: Router) { }
+
+  login(email:any, password:any){
+    this.afAuth.signInWithEmailAndPassword(email, password).then(logRef =>{
+      this.toastr.success('Logged in Successfully');
+      this.loadUser();
+      this.loggedIn.next(true);
+      this.isLoggedInGuard = true;
+      this.router.navigate(['/']);
+    }).catch(e =>{
+      this.toastr.warning("email or password incorrect");
+    })
   }
-   
-  /* Sign up */
-  SignUp(email: string, password: string) {
-  this.angularFireAuth
-  .auth
-  .createUserWithEmailAndPassword(email, password)
-  .then(res => {
-  console.log('You are Successfully signed up!', res);
-  })
-  .catch(error => {
-  console.log('Something is wrong:', error.message);
-  });
+
+  loadUser(){
+    this.afAuth.authState.subscribe(user =>{
+      localStorage.setItem('user', JSON.stringify(user));    
+    });
   }
-   
-  /* Sign in */
-  SignIn(email: string, password: string) {
-  this.angularFireAuth
-  .auth
-  .signInWithEmailAndPassword(email, password)
-  .then(res => {
-  console.log('You are Successfully logged in!');
-  })
-  .catch(err => {
-  console.log('Something is wrong:',err.message);
-  });
+
+
+  logOut(){
+    this.afAuth.signOut().then(()=>{
+      localStorage.removeItem('user');
+      this.loggedIn.next(false);
+      this.isLoggedInGuard = false;
+    this.router.navigate(['/login']);
+    });
   }
-   
-  /* Sign out */
-  SignOut() {
-  this.angularFireAuth
-  .auth
-  .signOut();
+
+  isLoggedIn(){
+    return this.loggedIn.asObservable();
   }
-   
-  }
+
+
+}
