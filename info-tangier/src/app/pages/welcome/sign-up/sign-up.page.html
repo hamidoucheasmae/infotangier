@@ -57,9 +57,10 @@
           size="large" 
           expand="block" 
           shape="round" 
-          color="primary" 
+          color="primary" (click)="signup()"
           [disabled]="signupForm.invalid">
           <ion-text color="white" >Sign Up</ion-text>
+          <ion-spinner name="dots" *ngIf="showSignupSpinner"></ion-spinner>
         </ion-button>
       </form>
     </ion-item-group>

@@ -4,6 +4,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 // import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
+import { FirebaseAuthService } from 'src/app/providers/firebase-auth.service';
 import { HelperService } from 'src/app/providers/helper.service';
 import { SIGNUP } from '../constants/formValidationMessage';
 // import { File } from '@ionic-native/file/ngx';
@@ -22,10 +23,11 @@ export class SignUpPage implements OnInit {
     password: ''
   };
   validationMessage: any = SIGNUP; 
+  showSignupSpinner:boolean =false;
 
 
   constructor(
-    private helperService:  HelperService,
+    private helperService:  HelperService, private firebaseAuthService:FirebaseAuthService
    ) { }
 
   ngOnInit() {
@@ -33,6 +35,19 @@ export class SignUpPage implements OnInit {
     this.createForm();
     
   }
+
+  async signup(){
+    try {
+      this.showSignupSpinner = true;
+  const result = await this.firebaseAuthService.registerWithEmailPassword(this.email.value , this.password.value);
+  console.log('result',result);
+  this.showSignupSpinner = false;
+    } catch (error){
+      this.showSignupSpinner = false;
+      console.log('Error',error);
+    }
+  }
+
 
   createFormControl (){
     this.email = new FormControl('', [
