@@ -29,7 +29,7 @@ export class HomePage implements OnInit, AfterContentChecked {
     ];
 
     this.trips = [      
-      { id: 1, name: 'Banjir Kanal', category: 'Camp', image: 'assets/imgs/banjir.jpg', price: '12K' },
+      { id: 1, name: 'tanger', category: 'Camp', image: 'assets/imgs/banjir.jpg', price: '12K' },
       { id: 2, name: 'Swiss Alps', category: 'Mountains', image: 'assets/imgs/swissalps.jpg', price: '20K' },
       { id: 3, name: 'Adi Kailash', category: 'Treking', image: 'assets/imgs/kailash.jpg', price: '5K' },
       { id: 4, name: 'Tarsar Lake', category: 'Lake', image: 'assets/imgs/tarsar.jpg', price: '15K' },
