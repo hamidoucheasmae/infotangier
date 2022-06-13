@@ -6,6 +6,7 @@ import { Capacitor } from '@capacitor/core';
 import { ActionSheetController } from '@ionic/angular';
 import { FirebaseAuthService } from 'src/app/providers/firebase-auth.service';
 import { HelperService } from 'src/app/providers/helper.service';
+import { WidgetUtilService } from 'src/app/providers/widget-util.service';
 import { SIGNUP } from '../constants/formValidationMessage';
 // import { File } from '@ionic-native/file/ngx';
 
@@ -24,10 +25,11 @@ export class SignUpPage implements OnInit {
   };
   validationMessage: any = SIGNUP; 
   showSignupSpinner:boolean =false;
+  router: any;
 
 
   constructor(
-    private helperService:  HelperService, private firebaseAuthService:FirebaseAuthService
+    private helperService:  HelperService, private firebaseAuthService:FirebaseAuthService ,private widgetUtilService: WidgetUtilService
    ) { }
 
   ngOnInit() {
@@ -42,9 +44,12 @@ export class SignUpPage implements OnInit {
   const result = await this.firebaseAuthService.registerWithEmailPassword(this.email.value , this.password.value);
   console.log('result',result);
   this.showSignupSpinner = false;
+  this.widgetUtilService.presentToast('Sign up siccees ! verificatioin email sendd');
+  this.signupForm.reset();
+  this.router.navigate(['./home']);
     } catch (error){
       this.showSignupSpinner = false;
-      console.log('Error',error);
+      this.widgetUtilService.presentToast(error.message);
     }
   }
 
