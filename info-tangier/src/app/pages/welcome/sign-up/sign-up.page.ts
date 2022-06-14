@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Capacitor } from '@capacitor/core';
 // import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ActionSheetController } from '@ionic/angular';
-import { FirebaseAuthService } from 'src/app/providers/firebase-auth.service';
-import { HelperService } from 'src/app/providers/helper.service';
-import { WidgetUtilService } from 'src/app/providers/widget-util.service';
+import { FirebaseAuthService } from 'src/app/pages/welcome/providers/firebase-auth.service';
+import { HelperService } from 'src/app/pages/welcome/providers/helper.service';
+import { WidgetUtilService } from 'src/app/pages/welcome/providers/widget-util.service';
 import { SIGNUP } from '../constants/formValidationMessage';
 // import { File } from '@ionic-native/file/ngx';
 
@@ -16,6 +17,7 @@ import { SIGNUP } from '../constants/formValidationMessage';
   styleUrls: ['./sign-up.page.scss'],
 })
 export class SignUpPage implements OnInit {
+  // router: Router;
   signupForm: FormGroup;
   email: FormControl;
   password: FormControl;
@@ -25,11 +27,12 @@ export class SignUpPage implements OnInit {
   };
   validationMessage: any = SIGNUP; 
   showSignupSpinner:boolean =false;
-  router: any;
+  // router: any;
 
 
   constructor(
-    private helperService:  HelperService, private firebaseAuthService:FirebaseAuthService ,private widgetUtilService: WidgetUtilService
+    private helperService:  HelperService, private firebaseAuthService:FirebaseAuthService ,private widgetUtilService: WidgetUtilService,
+    private router : Router
    ) { }
 
   ngOnInit() {
@@ -41,16 +44,15 @@ export class SignUpPage implements OnInit {
   async signup(){
     try {
       this.showSignupSpinner = true;
-  const result = await this.firebaseAuthService.registerWithEmailPassword(this.email.value , this.password.value);
-  console.log('result',result);
-  this.showSignupSpinner = false;
-  this.widgetUtilService.presentToast('Sign up siccees ! verificatioin email sendd');
-  this.signupForm.reset();
-  this.router.navigate(['./home']);
-    } catch (error){
+      const result = await this.firebaseAuthService.registerWithEmailPassword(this.email.value , this.password.value);
       this.showSignupSpinner = false;
-      this.widgetUtilService.presentToast(error.message);
-    }
+      this.widgetUtilService.presentToast('Sign up siccees ! verificatioin email sendd');
+      this.signupForm.reset();
+      this.router.navigate(['/tabs/home']);
+        } catch (error){
+          this.showSignupSpinner = false;
+          this.widgetUtilService.presentToast(error.message);
+        }
   }
 
 
@@ -83,4 +85,4 @@ export class SignUpPage implements OnInit {
  
 
 }
- 
+

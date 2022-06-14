@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HelperService } from 'src/app/providers/helper.service';
+import { HelperService } from 'src/app/pages/welcome/providers/helper.service';
 import { LOGIN } from './../constants/formValidationMessage';
 @Component({
   selector: 'app-sign-in',
