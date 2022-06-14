@@ -22,6 +22,7 @@ export class SignInPage implements OnInit {
   };
   validationMessage: any = LOGIN; 
   showLoginSpinner: boolean = false;
+ 
 
   constructor(private helperService: HelperService, private router: Router, private firebaseAuthService: FirebaseAuthService,
     private widgetUtilService: WidgetUtilService) { }
@@ -63,7 +64,6 @@ resetForm() {
   };
 }
 
-
 async loginWithEmailPassword() {
   try {
     this.showLoginSpinner = true;
@@ -72,7 +72,7 @@ async loginWithEmailPassword() {
     this.showLoginSpinner = false;
     this.widgetUtilService.presentToast('Login Success!');
     this.resetForm();
-    this.router.navigate(['welcome/home']);
+    this.router.navigate(['/tabs/home']);
   } catch (error) {
     console.log('Error', error);
     this.showLoginSpinner = false;

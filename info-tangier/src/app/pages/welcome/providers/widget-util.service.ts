@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Platform, ToastController } from '@ionic/angular';
+import { Platform, ToastController,LoadingController  } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WidgetUtilService {
 
-  constructor( private toastController:ToastController ,private platform: Platform) { }
+  loading: any ={};
+
+  constructor( private toastController:ToastController ,private platform: Platform, private loadingController: LoadingController) { }
 
   async presentToast(message) {
     const toast = await this.toastController.create({
@@ -26,4 +28,23 @@ export class WidgetUtilService {
     });
     toast.present();
   }
+
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      spinner: null,
+      duration: 5000,
+      message: 'Please wait...',
+      translucent: true,
+  
+    });
+   return  await this.loading.present();
+
+  
+  }
+
+  async dismissLoader(){
+    await this.loading.dismiss ();
+  }
+ 
 }

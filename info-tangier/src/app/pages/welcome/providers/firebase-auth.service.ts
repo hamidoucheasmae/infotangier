@@ -37,6 +37,9 @@ export class FirebaseAuthService {
     }
   }
 
+  getAuthState() {
+    return this.angularFireAuth.authState;
+  }
 
 
 }
