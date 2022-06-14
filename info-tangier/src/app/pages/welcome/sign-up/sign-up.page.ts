@@ -41,13 +41,21 @@ export class SignUpPage implements OnInit {
     
   }
 
+
+  resetForm() {
+    this.signupForm.reset();
+    this.formError = {
+      email: '',
+      password: ''
+    };
+  }
   async signup(){
     try {
       this.showSignupSpinner = true;
       const result = await this.firebaseAuthService.registerWithEmailPassword(this.email.value , this.password.value);
       this.showSignupSpinner = false;
       this.widgetUtilService.presentToast('Sign up siccees ! verificatioin email sendd');
-      this.signupForm.reset();
+      this.resetForm();
       this.router.navigate(['/tabs/home']);
         } catch (error){
           this.showSignupSpinner = false;

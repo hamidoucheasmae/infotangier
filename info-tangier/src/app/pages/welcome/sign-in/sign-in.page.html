@@ -59,7 +59,7 @@
           shape="round" 
           color="primary" 
           [disabled]="loginForm.invalid">
-          <ion-text color="white" >Sign in</ion-text>
+          <ion-text color="white"   (click)="loginWithEmailPassword()" >Sign in</ion-text>
         </ion-button>
       </form>
     </ion-item-group>
