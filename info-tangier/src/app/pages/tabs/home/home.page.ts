@@ -1,6 +1,9 @@
 import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { PostService } from 'src/app/services/post.service';
 // import Swiper core and required modules
 import SwiperCore, { EffectFade, SwiperOptions } from 'swiper';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 // install Swiper modules
 SwiperCore.use([EffectFade]);
@@ -16,8 +19,14 @@ export class HomePage implements OnInit, AfterContentChecked {
   config1: SwiperOptions;
   categories: any[] = [];
   trips: any[] = [];
+  postArray !: any[];
 
-  constructor() { }
+  constructor( private postService : PostService,   private storage: AngularFireStorage,
+    private afs : AngularFirestore, ) {
+      this.postService.loadData().subscribe((val) => {
+        this.postArray = val;
+      });
+  }
 
   ngOnInit() {
     

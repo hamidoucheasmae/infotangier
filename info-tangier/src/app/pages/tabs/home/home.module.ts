@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { HomePage } from './home.page';
 import { SwiperModule } from 'swiper/angular';
+import { PostCardComponent } from 'src/app/post-card/post-card.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { SwiperModule } from 'swiper/angular';
     HomePageRoutingModule,
     SwiperModule
   ],
-  declarations: [HomePage]
+  declarations: [PostCardComponent,HomePage]
+  
 })
 export class HomePageModule {}
