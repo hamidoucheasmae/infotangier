@@ -1,6 +1,6 @@
 
 
- <ion-card class="location-card" *ngIf="postData">
+ <ion-card class="location-card" *ngIf="postData" [routerLink]="['/details', postData.id]">
   <div >
     <img src="{{ postData?.data?.postImgPath }}" />
     <!-- <ion-chip class="ion-padding">

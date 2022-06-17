@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { DetailsPostPage } from './details-post/details-post.page';
 
 import { TabsPage } from './tabs.page';
 
@@ -8,6 +9,15 @@ const routes: Routes = [
     path: '',
     component: TabsPage,
     children: [
+      // {
+      //   path: 'details/:id',
+      //   loadChildren: () => import('./details-post/details-post.module').then( m => m.DetailsPostPageModule)
+      // },
+      {
+        path: 'details/:id',
+        component: DetailsPostPage,
+      },
+      
       {
         path: 'home',
         loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
