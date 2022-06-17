@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { SwiperModule } from 'swiper/angular';
 import { PostCardComponent } from 'src/app/post-card/post-card.component';
+import { CategoryComponent } from 'src/app/category/category.component';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { PostCardComponent } from 'src/app/post-card/post-card.component';
     HomePageRoutingModule,
     SwiperModule
   ],
-  declarations: [PostCardComponent,HomePage ]
+  declarations: [PostCardComponent,HomePage,CategoryComponent ]
   
 })
 export class HomePageModule {}

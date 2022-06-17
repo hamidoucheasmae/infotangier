@@ -33,19 +33,10 @@
   </ion-searchbar> -->
 
   <ion-row class="ion-margin-top">
-    <!-- <ion-label class="ion-margin-start heading">Categories</ion-label> -->
-    <swiper [config]="config" effect="fade">
-      <ng-template swiperSlide *ngFor="let category of categories">
-        <ion-card>
-          <ion-item lines="none">
-            <ion-thumbnail slot="start">
-              <img [src]="category?.image" />
-            </ion-thumbnail>
-            <ion-label class="ion-text-wrap">{{category?.name}}</ion-label>
-          </ion-item>
-        </ion-card>
-      </ng-template>
-    </swiper>
+    <ion-label class="ion-margin-start heading">Categories</ion-label>
+    <ion-col size="12">
+<app-category></app-category>
+</ion-col>
   </ion-row>
 
   <ion-row class="ion-margin-top">
@@ -56,12 +47,12 @@
       </ion-label>
    
     </ion-col>
-    <ion-col size="4">
+    <!-- <ion-col size="4"> -->
       <ion-button fill="clear" color="medium" size="small">
         EXPLORE
         <ion-icon color="primary" name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-button>
-    </ion-col>
+    <!-- </ion-col> -->
     <swiper [config]="config1" effect="fade">
       <ng-template swiperSlide *ngFor="let trip of trips">
         <ion-card class="location-card">

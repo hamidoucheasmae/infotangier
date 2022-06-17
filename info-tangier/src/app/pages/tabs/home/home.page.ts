@@ -22,7 +22,7 @@ export class HomePage implements OnInit, AfterContentChecked {
   postArray !: any[];
 
   constructor( private postService : PostService,   private storage: AngularFireStorage,
-    private afs : AngularFirestore, ) {
+    private afs : AngularFirestore) {
       this.postService.loadData().subscribe((val) => {
         this.postArray = val;
       });

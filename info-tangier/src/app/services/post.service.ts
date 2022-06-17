@@ -48,7 +48,7 @@ export class PostService {
  }
 
  loadCategoryPost(categoryId: any){
-  return this.afs.collection('posts', ref => ref.where('category.categoryId', '==', categoryId)).snapshotChanges().pipe(
+  return this.afs.collection('posts', ref => ref.where('category?.categoryId', '==', categoryId)).snapshotChanges().pipe(
     map(actions =>{
    return actions.map(a =>{
      const data = a.payload.doc.data();

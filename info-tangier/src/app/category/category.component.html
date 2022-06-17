@@ -1,0 +1,10 @@
+<swiper [config]="config" effect="fade">
+  <ng-template swiperSlide *ngFor="let category of categoryArray" >
+    <ion-card>
+      <ion-item lines="none">
+     
+        <ion-label class="ion-text-wrap"  href=""  [routerLink]="['/category', category?.id]">{{category?.data?.category}}</ion-label>
+      </ion-item>
+    </ion-card>
+  </ng-template>
+</swiper> 

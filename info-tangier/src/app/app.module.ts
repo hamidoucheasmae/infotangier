@@ -12,6 +12,8 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { PostCardComponent } from './post-card/post-card.component';
+import { CategoryPagePage } from './pages/tabs/category-page/category-page.page';
+import { CategoryComponent } from './category/category.component';
 
 // import { Camera } from '@ionic-native/camera/ngx';
 // import { File } from '@ionic-native/file/ngx';
