@@ -57,11 +57,11 @@ export class AppComponent {
       if (this.isLoggedIn) {
     console.log('route==', this.router.url.split('/')[1]);
  const currentUrl = this.router.url.split('/')[1];
- if (currentUrl === 'welcome/login' || currentUrl === 'welcome/signup') {
+ if (currentUrl === 'welcome/sign-in' || currentUrl === 'welcome/signup') {
   this.router.navigate(['/tabs/home']);
  }
       } else {
-        this.router.navigate(['welcome/login'])
+        this.router.navigate(['welcome/sign-in'])
       }
     }
 
