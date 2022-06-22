@@ -1,0 +1,13 @@
+<header class="navbar navbar-expand-lg fixed-top bg-white">
+   
+    <div class="container justify-content-center">
+        <a routerLink="/" class="site-logo"> 
+            <img class="logo-abbr" src="../../../assets/INFOTANGER.svg" alt="">
+        </a>
+    </div>
+    <div *ngIf="isLoggeIn$ | async" class="container justify-content-center">
+        <a class="mx-3" routerLink="/">{{userEmail}}</a>
+        <button class="btn btn-sm btn-danger" (click)="logOut()">Logout</button>
+    </div>
+
+</header>

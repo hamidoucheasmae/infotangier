@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "target": "infotangieradmin",
+    "public": "dist/info-tangier-admin",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "info-tangier"
+  },
+  "targets": {
+    "info-tangier": {
+      "hosting": {
+        "infotangieradmin": [
+          "admin-info-tangier"
+        ]
+      }
+    }
+  }
+}

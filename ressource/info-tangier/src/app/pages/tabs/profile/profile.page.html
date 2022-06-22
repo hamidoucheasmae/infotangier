@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-row class="ion-justify-content-center" *ngIf="profileAvailable">
+      <ion-col size="12" size-xs="12" size-md="6" size-lg="6">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              Profile
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <ion-col size="12">
+                <ion-img class="user-avatar" src="{{profileInfo.photoURL || 'assets/avatar.png'}}"></ion-img>
+              </ion-col>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label>
+                    Name
+                  </ion-label>
+                  {{profileInfo.displayName || '-'}}
+                </ion-item>
+                <ion-item>
+                  <ion-label>
+                    Email
+                  </ion-label>
+                  {{profileInfo.email}}
+                </ion-item>
+              </ion-col>
+              <ion-col size="12">
+                <ion-button color="secondary" expand="block" (click)="logout()">Logout</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-spinner name="lines" class="page-loader" color="secondary" *ngIf="!profileAvailable"></ion-spinner>
+  </ion-grid>
+</ion-content>

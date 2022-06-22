@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">infoTangier</string>
+    <string name="title_activity_main">infoTangier</string>
+    <string name="package_name">com.infotangier.app</string>
+    <string name="custom_url_scheme">com.infotangier.app</string>
+</resources>
